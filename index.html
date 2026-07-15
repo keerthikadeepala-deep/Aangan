@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aangan — Care for your parents in India, from wherever you are</title>
+<meta name="description" content="Aangan is one shared place for your family's care of aging parents in India: a health timeline everyone sees, medical reports explained in plain language, medication tracking, and a clear plan for the 2 AM phone call. Built by NRI families, for NRI families.">
+<meta property="og:title" content="Aangan — the distance is real. The chaos doesn't have to be.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#124E4E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Karla:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#FCF9F3;
+  --peacock:#124E4E;      /* deep peacock teal */
+  --peacock-soft:#E3EEEC;
+  --marigold:#E8A020;     /* genda-phool accent */
+  --marigold-soft:#FBF0DA;
+  --ink:#26302E;
+  --ink-soft:#5C6B67;
+  --line:#E4DED2;
+  --card:#FFFFFF;
+  --display:'Bitter',Georgia,serif;
+  --body:'Karla',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{font-family:var(--body);background:var(--ivory);color:var(--ink);line-height:1.65;font-size:17px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+::selection{background:var(--marigold);color:#fff}
+a:focus-visible,button:focus-visible{outline:2px solid var(--marigold);outline-offset:3px;border-radius:3px}
+
+header{position:sticky;top:0;z-index:40;background:rgba(252,249,243,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{font-family:var(--display);font-weight:700;font-size:1.3rem;color:var(--peacock);text-decoration:none}
+.brand em{font-style:normal;color:var(--marigold)}
+nav.links{display:flex;gap:24px;align-items:center}
+nav.links a{text-decoration:none;font-size:.92rem;color:var(--ink-soft)}
+nav.links a:hover{color:var(--ink)}
+.btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;padding:12px 24px;border-radius:999px;border:1.5px solid var(--peacock);transition:background .12s}
+.btn.primary{background:var(--peacock);color:#fff}
+.btn.primary:hover{background:#0C3A3A}
+.btn.ghost{color:var(--peacock)}
+.btn.ghost:hover{background:var(--peacock-soft)}
+.btn.small{padding:8px 18px;font-size:.85rem}
+@media(max-width:780px){nav.links a:not(.btn){display:none}}
+
+.hero{padding:80px 0 64px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}
+@media(max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marigold);margin-bottom:16px}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,4.8vw,3.4rem);line-height:1.12;color:var(--peacock);margin-bottom:20px}
+.lede{font-size:1.12rem;color:var(--ink-soft);max-width:32em;margin-bottom:28px}
+.cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:16px}
+.tiny{font-size:.82rem;color:var(--ink-soft)}
+
+/* signature: the two-clock care timeline */
+.carecard{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 26px 60px -34px rgba(18,78,78,.4);overflow:hidden}
+.clocks{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.clocks div{padding:14px 18px;font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);letter-spacing:.04em}
+.clocks div b{display:block;font-size:.95rem;color:var(--ink);font-weight:500;margin-top:2px}
+.clocks div:first-child{border-right:1px dashed var(--line)}
+.feed{padding:18px 20px 22px;display:flex;flex-direction:column;gap:14px}
+.upd{display:flex;gap:12px;align-items:flex-start}
+.upd .dot{flex:0 0 10px;height:10px;border-radius:50%;margin-top:7px;background:var(--peacock)}
+.upd.warn .dot{background:var(--marigold)}
+.upd p{font-size:.88rem;line-height:1.5}
+.upd p b{font-weight:600}
+.upd .when{font-family:var(--mono);font-size:.64rem;color:var(--ink-soft);display:block;margin-top:2px}
+.upd .explain{margin-top:6px;background:var(--peacock-soft);border-radius:8px;padding:8px 12px;font-size:.82rem;color:var(--peacock)}
+
+section{padding:80px 0;border-top:1px solid var(--line)}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.3rem);color:var(--peacock);line-height:1.18;max-width:22em;margin-bottom:16px}
+.sub{color:var(--ink-soft);max-width:40em;margin-bottom:40px}
+.sec-label{font-family:var(--mono);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+
+.pain{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:760px){.pain{grid-template-columns:1fr}}
+.pcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
+.pcard h3{font-family:var(--display);font-size:1.05rem;color:var(--peacock);margin-bottom:8px}
+.pcard p{font-size:.9rem;color:var(--ink-soft)}
+
+.feats{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:720px){.feats{grid-template-columns:1fr}}
+.fcard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;border-top:4px solid var(--peacock)}
+.fcard:nth-child(even){border-top-color:var(--marigold)}
+.fcard h3{font-family:var(--display);font-size:1.1rem;color:var(--peacock);margin-bottom:8px}
+.fcard p{font-size:.92rem;color:var(--ink-soft)}
+
+.waitlist{background:var(--peacock);border-radius:20px;color:#fff;padding:56px 44px;text-align:center}
+@media(max-width:600px){.waitlist{padding:40px 24px}}
+.waitlist h2{color:#fff;margin:0 auto 14px}
+.waitlist p{color:#CFE0DD;max-width:36em;margin:0 auto 28px}
+.waitlist .btn.primary{background:var(--marigold);border-color:var(--marigold);color:#26302E;font-weight:700}
+.waitlist .mail{display:inline-block;margin-top:16px;font-family:var(--mono);font-size:.85rem;color:#CFE0DD;text-decoration:none;border-bottom:1px dashed #3E6C6C}
+
+footer{padding:40px 0 56px;font-size:.85rem;color:var(--ink-soft);border-top:1px solid var(--line)}
+.fine{font-size:.78rem;max-width:56em;margin-top:14px}
+.reveal{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+.reveal.in{opacity:1;transform:none}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top">Aangan<em>.</em></a>
+    <nav class="links">
+      <a href="#pain">The problem</a>
+      <a href="#feats">What it does</a>
+      <a class="btn primary small" href="#waitlist">Join the waitlist</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">For families caring across countries</div>
+      <h1>Your parents are in India. You're not. Care for them like you're there.</h1>
+      <p class="lede">Aangan is one shared place for your whole family — the health timeline everyone sees, medical reports explained in plain language, medicines tracked, and a clear plan for the phone call you dread. Built by children who've done the 2 AM math on flights home.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="#waitlist">Join the early-access waitlist</a>
+        <a class="btn ghost" href="#feats">See how it works</a>
+      </div>
+      <p class="tiny">Free while in early access · WhatsApp-friendly for parents and local caregivers</p>
+    </div>
+
+    <div class="carecard reveal" aria-label="Example of a shared care timeline across two time zones">
+      <div class="clocks">
+        <div>YOU · MINNEAPOLIS<b>9:12 PM · Tue</b></div>
+        <div>AMMA · COIMBATORE<b>7:42 AM · Wed</b></div>
+      </div>
+      <div class="feed">
+        <div class="upd">
+          <span class="dot" aria-hidden="true"></span>
+          <p><b>Ravi (attendant)</b> checked in — morning BP 138/86, medicines given.<span class="when">12 MIN AGO</span></p>
+        </div>
+        <div class="upd warn">
+          <span class="dot" aria-hidden="true"></span>
+          <p><b>New report uploaded:</b> HbA1c lab result from Apollo Clinic.
+          <span class="explain">Plain-language: sugar control has slipped slightly since March — worth asking Dr. Kumar about the evening dose at Friday's visit. 3 questions prepared.</span>
+          <span class="when">1 HR AGO</span></p>
+        </div>
+        <div class="upd">
+          <span class="dot" aria-hidden="true"></span>
+          <p><b>Your sister (London)</b> confirmed Friday's cardiology appointment and cab booking.<span class="when">YESTERDAY</span></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="pain">
+  <div class="wrap">
+    <div class="sec-label">YOU KNOW THIS FEELING</div>
+    <h2>Right now, your parent's health lives in a WhatsApp group and three people's memories.</h2>
+    <div class="pain" style="margin-top:36px">
+      <div class="pcard reveal"><h3>The photographed prescription</h3><p>A blurry image in the family group, a doctor's handwriting nobody can read, and no one sure what changed since the last visit.</p></div>
+      <div class="pcard reveal"><h3>The time-zone relay</h3><p>You wake up to 40 messages between your siblings in three countries. Something happened. Nobody wrote down what the doctor actually said.</p></div>
+      <div class="pcard reveal"><h3>The 2 AM decision</h3><p>"Should someone fly home?" — asked with no data: no trend of her readings, no record of the last episode, only fear and guesswork.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="feats">
+  <div class="wrap">
+    <div class="sec-label">WHAT AANGAN DOES</div>
+    <h2>One courtyard for the whole family's care.</h2>
+    <p class="sub">Aangan (आंगन) is the courtyard at the heart of an Indian home — where the family gathers. That's what this is, for families that geography has scattered.</p>
+    <div class="feats">
+      <div class="fcard reveal"><h3>A shared health timeline</h3><p>Every appointment, reading, symptom, and hospital visit in one chronological record all siblings see — so the story doesn't live in anyone's memory or chat scroll.</p></div>
+      <div class="fcard reveal"><h3>Reports, explained</h3><p>Upload the lab PDF or the photographed prescription; get a plain-language explanation, what changed since last time, and the questions worth asking the doctor — in English, Hindi, Tamil, or Telugu.</p></div>
+      <div class="fcard reveal"><h3>Medicines, actually tracked</h3><p>The current medication list — one source of truth — with WhatsApp-simple daily check-ins that a parent or local attendant can actually keep up with.</p></div>
+      <div class="fcard reveal"><h3>The emergency plan, ready</h3><p>Nearest preferred hospital, the doctor's number, insurance details, who has power of attorney, who flies first — decided calmly in advance, one tap away in the moment.</p></div>
+      <div class="fcard reveal"><h3>Local caregivers, accountable</h3><p>Attendants and helpers log visits and vitals in seconds. You see check-ins happen — gentle accountability without surveillance.</p></div>
+      <div class="fcard reveal"><h3>Made for parents, too</h3><p>Nothing to learn on their side: large text, voice notes, and WhatsApp-first flows. The tech burden stays with the children, where it belongs.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="waitlist">
+  <div class="wrap">
+    <div class="waitlist reveal">
+      <h2>We're building this now. Help us build it right.</h2>
+      <p>Join the early-access waitlist and tell us one thing: what was the hardest moment of caring for your parents from abroad? The first 100 families shape the product — and use it free.</p>
+      <a class="btn primary" href="mailto:hello@aangan.example?subject=Waitlist&body=The%20hardest%20moment%20for%20our%20family%20was...">Join the waitlist</a>
+      <br>
+      <a class="mail" href="mailto:hello@aangan.example">hello@aangan.example</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="brand">Aangan<em>.</em></span>
+    <p class="fine">© 2026 Aangan. Aangan helps families organize and understand care information; it is not a medical service and does not provide medical advice, diagnosis, or treatment. Always consult your doctor for medical decisions. In an emergency, contact local emergency services immediately.</p>
+  </div>
+</footer>
+
+<script>
+const rm = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const els = document.querySelectorAll('.reveal');
+if (rm) { els.forEach(e=>e.classList.add('in')); }
+else {
+  const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})},{threshold:.12});
+  els.forEach(e=>io.observe(e));
+}
+</script>
+</body>
+</html>
